@@ -5,10 +5,8 @@ FROM orders
 WHERE ship_country IN ('France', 'Germany', 'Spain');
 
 -- 2. уникальные города и страны, куда отправлялись заказы, отсортировать по странам и городам (таблица orders, колонки ship_country, ship_city)
-SELECT ship_city, ship_country
-FROM orders
-GROUP BY ship_country, ship_city
-ORDER BY ship_country, ship_city;
+SELECT DISTINCT ship_city, ship_country
+FROM orders;
 
 -- 3. сколько дней в среднем уходит на доставку товара в Германию (таблица orders, колонки order_date, shipped_date, ship_country)
 SELECT AVG(shipped_date - order_date) AS average_shipment_time

@@ -1,9 +1,8 @@
 -- Напишите запросы, которые выводят следующую информацию:
 -- 1. заказы, отправленные в города, заканчивающиеся на 'burg'. Вывести без повторений две колонки (город, страна) (см. таблица orders, колонки ship_city, ship_country)
-SELECT ship_city, ship_country
+SELECT DISTINCT ship_city, ship_country
 FROM orders
-WHERE ship_city LIKE '%burg'
-GROUP BY ship_country, ship_city;
+WHERE ship_city LIKE '%burg';
 
 -- 2. из таблицы orders идентификатор заказа, идентификатор заказчика, вес и страну отгрузки. Заказ отгружен в страны, начинающиеся на 'P'. Результат отсортирован по весу (по убыванию). Вывести первые 10 записей.
 SELECT order_id, customer_id, freight, ship_country
@@ -28,7 +27,8 @@ SELECT ship_country, SUM(freight) AS sum_freight
 FROM orders
 WHERE ship_region IS NOT NULL
 GROUP BY ship_country
-HAVING SUM(freight) >= 2750;
+HAVING SUM(freight) >= 2750
+ORDER BY sum_freight DESC;
 
 -- 6. страны, в которых зарегистрированы и заказчики (customers) и поставщики (suppliers) и работники (employees).
 SELECT country
