@@ -8,9 +8,8 @@ SELECT order_id, (shipped_date - order_date) AS shipment_period
 FROM orders;
 
 -- 3. все города без повторов, в которых зарегистрированы заказчики (customers)
-SELECT city
-FROM customers
-GROUP BY city;
+SELECT DISTINCT city
+FROM customers;
 
 -- 4. количество заказов (таблица orders)
 SELECT COUNT(*) AS orders_count
